@@ -9,8 +9,9 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
-
 from pathlib import Path
+import os
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -24,11 +25,13 @@ SECRET_KEY = 'django-insecure-)eiunn&!8ui+gth0zadl9&6!5-osnoy_whp3t#l+wh0%i=&oro
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["127.0.0.1"]
 
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
+    'rest_framework',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -36,6 +39,54 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+
+
+__app_name__ = "page"
+__apps__ = BASE_DIR / __app_name__
+apps = [
+    item
+    for item in __import__("os").listdir(
+        __apps__.as_posix(),
+    )
+    if not (item.startswith("_"))
+]
+
+for item in apps:
+
+# -----------------------------------------------------------------------------
+    # for install apps append
+    try:
+        INSTALLED_APPS.append(
+            # custom modules
+            f"{__app_name__}.{item}",
+        )
+    except Exception:
+        print(f"Not found urls in module {item}")
+
+# -----------------------------------------------------------------------------
+    # for item in apps:
+    url_content = (
+        "from django.urls import path\n"
+        "from .views import *\n"
+        "urlpatterns = []\n"
+    )
+
+    url_path = f"src/page/{item}/urls.py"
+    if not os.path.exists(url_path):
+        with open(url_path, "w", encoding="utf-8") as file:
+            file.write(url_content)
+# -----------------------------------------------------------------------------
+    # for Serializer file
+
+    serializer_content = (
+        "from rest_framework import serializers\n"
+    )
+
+    serializer_path = f"src/page/{item}/serializers.py"
+    if not os.path.exists(serializer_path):
+        with open(serializer_path, "w", encoding="utf-8") as file:
+            file.write(serializer_content)
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -74,7 +125,7 @@ WSGI_APPLICATION = 'core.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR.parent / 'data/database/Arfa-Med.sqlite3',
+        'NAME': BASE_DIR.parent / 'data/Arfa-Med.sqlite3',
     }
 }
 
@@ -118,3 +169,10 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.'
+                                'LimitOffsetPagination',
+    'PAGE_SIZE': 2
+}
