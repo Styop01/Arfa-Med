@@ -30,7 +30,7 @@ for item in apps:
 
     try:
         urlpatterns.append(
-             path('', include(f"{__app_name__}.{item}.urls")),
+             path(f'{item}', include(f"{__app_name__}.{item}.urls")),
                  )
     except ModuleNotFoundError:
         print(f"Not found urls in module {item}")

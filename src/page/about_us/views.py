@@ -9,19 +9,19 @@ from ctrl.paggination import CustomIndexPagination
 class TeamView(generics.ListAPIView):
     queryset = Team.objects.all()
     serializer_class = TeamSerializer
-    permission_classes = [CustomIndexPagination]
+    pagination_class = CustomIndexPagination
 
 
 class TestimonialView(generics.ListAPIView):
     queryset = Testimonial.objects.all()
     serializer_class = TestimonialSerializer
-    permission_classes = [CustomIndexPagination]
+    pagination_class = CustomIndexPagination
 
 
 class ClientsView(generics.ListAPIView):
     queryset = Clients.objects.all()
     serializer_class = ClientsSerializer
-    permission_classes = [CustomIndexPagination]
+    pagination_class = CustomIndexPagination
 
 # class AboutUsView(APIView):
 #
