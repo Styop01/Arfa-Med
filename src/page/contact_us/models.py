@@ -5,10 +5,10 @@ from django.db import models
 
 class Form(models.Model):
     id = models.PositiveIntegerField(primary_key=True)
-    icon = models.TextField(max_length=70)
-    title = models.CharField(max_length=50)
-    name = models.CharField(max_length=50)
-    type = models.CharField(max_length=50, blank=True)
+    icon = models.CharField(max_length=20)
+    title = models.CharField(max_length=20)
+    name = models.CharField(max_length=20)
+    type = models.CharField(max_length=20, blank=True)
 
     def __str__(self):
         return self.icon
@@ -16,9 +16,9 @@ class Form(models.Model):
 
 class Card(models.Model):
     id = models.PositiveIntegerField(primary_key=True)
-    icon = models.TextField(max_length=70)
-    title = models.CharField(max_length=50)
-    subtitle = models.CharField(max_length=50)
+    icon = models.TextField(max_length=20)
+    title = models.CharField(max_length=20)
+    subtitle = models.CharField(max_length=20)
 
     def __str__(self):
         return self.icon

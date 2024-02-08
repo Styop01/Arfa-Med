@@ -7,9 +7,13 @@ from ctrl.paggination import CustomIndexPagination
 # Create your views here.
 
 class CardioView(generics.ListAPIView):
-    queryset = Team.objects
+    queryset = Team.objects.all()
     serializer_class = TeamSerializer
     pagination_class = CustomIndexPagination
+
+
+
+
 # class CardioView(APIView):
 #     def get(self, request, slug):
 #         team = Team.objects.all()

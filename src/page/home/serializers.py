@@ -40,3 +40,9 @@ class BlogSerializer(serializers.ModelSerializer):
     class Meta:
         model = Blog
         fields = "__all__"
+
+
+class HeaderSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Header
+        fields = "__all__"

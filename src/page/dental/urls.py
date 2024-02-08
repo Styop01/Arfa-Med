@@ -1,5 +1,5 @@
 from django.urls import path
 from .views import *
 urlpatterns = [
-    path("/get/blog/", DentalView.as_view())
+    path("get/blog/", DentalView.as_view())
 ]

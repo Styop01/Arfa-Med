@@ -6,7 +6,7 @@ from page.home.serializers import TeamSerializer
 
 # Create your views here.
 class DoctorsView(APIView):
-    def get(self, request, slug):
+    def get(self, request):
         team = Team.objects.all()
 
         return Response({

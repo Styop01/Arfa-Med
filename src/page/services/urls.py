@@ -1,5 +1,5 @@
 from django.urls import path
 from .views import *
 urlpatterns = [
-    path('/get/<str:slug>/', ServiceView.as_view())
+    path('get/team/', ServiceView.as_view())
 ]

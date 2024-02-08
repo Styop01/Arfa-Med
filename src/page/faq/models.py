@@ -5,7 +5,7 @@ from django.db import models
 
 class Questions(models.Model):
     id = models.PositiveIntegerField(primary_key=True)
-    title = models.CharField(max_length=150)
+    title = models.TextField(max_length=150)
     toggle = models.CharField(max_length=20, blank=True)
     body = models.TextField()
 

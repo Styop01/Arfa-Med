@@ -8,7 +8,7 @@ from page.home.serializers import BlogSerializer
 
 class SingleView(APIView):
 
-    def get(self, request, slug):
+    def get(self, request):
         blog = Blog.objects.all()
 
         return Response({

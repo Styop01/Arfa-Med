@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 from pathlib import Path
 import os
+from .jazzmin import JAZZMIN_SETTINGS, JAZZMIN_UI_TWEAKS
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -25,19 +26,22 @@ SECRET_KEY = 'django-insecure-)eiunn&!8ui+gth0zadl9&6!5-osnoy_whp3t#l+wh0%i=&oro
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["127.0.0.1"]
+ALLOWED_HOSTS = ["127.0.0.1", "192.168.0.107", "192.168.1.10"]
 
 # Application definition
 
 INSTALLED_APPS = [
     'jazzmin',
-    'rest_framework',
+    'modeltranslation',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'corsheaders',
+    'ckeditor',
 ]
 
 
@@ -91,12 +95,15 @@ for item in apps:
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',  # for model translation
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
+
 
 ROOT_URLCONF = 'core.urls'
 
@@ -121,6 +128,7 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+# SQLite
 
 DATABASES = {
     'default': {
@@ -128,6 +136,19 @@ DATABASES = {
         'NAME': BASE_DIR.parent / 'data/Arfa-Med.sqlite3',
     }
 }
+
+# PostgreSQL
+#
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'Arfa-Medpg',
+#         'USER': 'postgres',
+#         'PASSWORD': '1234',
+#         'HOST': 'localhost',
+#         'PORT': '5432',
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -152,13 +173,33 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+# Translation -----------------------------------------------------------------
 
-TIME_ZONE = 'UTC'
+LANGUAGE_CODE = 'en'
+
+USE_TZ = True
+
+USE_L10N = True
 
 USE_I18N = True
 
-USE_TZ = True
+TIME_ZONE = 'UTC'
+
+# Specify the languages your application will support
+LANGUAGES = [
+    ('en', 'English'),
+    ('am', 'Armenia'),
+    ('ru', 'Russian'),
+    # Add more languages as needed
+]
+
+LOCALE_PATHS = [
+    BASE_DIR / 'locale/',
+]
+
+MODELTRANSLATION_LANGUAGES = ('am', 'ru')
+# Set the default language for the site
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
@@ -170,9 +211,37 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+#
+# REST_FRAMEWORK = {
+#     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.'
+#                                 'LimitOffsetPagination',
+#     'PAGE_SIZE': 2
+# }
 
-REST_FRAMEWORK = {
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.'
-                                'LimitOffsetPagination',
-    'PAGE_SIZE': 2
-}
+
+
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:3000',
+    'http://127.0.0.1:8000',
+]
+
+CORS_ALLOW_CREDENTIALS = True
+
+CORS_ALLOW_METHODS = [
+    'DELETE',
+    'GET',
+    'OPTIONS',
+    'PATCH',
+    'POST',
+    'PUT',
+]
+CORS_ALLOW_HEADERS = [
+    'Accept',
+    'Authorization',
+    'Content-Type',
+]
+
+
+JAZZMIN_SETTINGS = JAZZMIN_SETTINGS
+
+JAZZMIN_UI_TWEAKS = JAZZMIN_UI_TWEAKS

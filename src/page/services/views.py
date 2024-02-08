@@ -6,11 +6,13 @@ from page.home.serializers import TeamSerializer
 
 # Create your views here.
 class ServiceView(APIView):
-    def get(self, request, slug):
+    def get(self, request):
         team = Team.objects.all()
-        if slug == "team":
-            return Response({
-                "services": {
-                    "team": TeamSerializer(team, many=True).data
-                }
-            })
+
+        return Response({
+            "services": {
+                "team": TeamSerializer(team, many=True).data
+            }
+        })
+
+# class ServiceView(generics.ListAPIView):

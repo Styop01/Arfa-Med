@@ -16,6 +16,9 @@ django-jazzmin = "^2.6.0"
 django-rest = "^0.8.7"
 django-ckeditor = "^6.7.0"
 django-rest-framework = "^0.1.0"
+django-modeltranslation = "^0.18.11"
+psycopg2-binary = "^2.9.9"
+django-cors-headers = "^4.3.1"
 
 
 [tool.poetry.group.dev.dependencies]

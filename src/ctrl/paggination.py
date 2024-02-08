@@ -3,7 +3,7 @@ from rest_framework.response import Response
 
 # endpoint --------->  ?start_index=1&end_index=7
 class CustomIndexPagination(BasePagination):
-    page_size = 10
+    page_size = 100
 
     def paginate_queryset(self, queryset, request, view=None):
         self.start_index = int(request.query_params.get('start_index', 0))
@@ -27,8 +27,8 @@ class CustomIndexPagination(BasePagination):
             'results': data,
         })
 
-
-class CustomPageNumberPagination(PageNumberPagination):
-    page_size = 2
-    page_size_query_param = 'page_size'
-    max_page_size = 1000
+#
+# class CustomPageNumberPagination(PageNumberPagination):
+#     page_size = 2
+#     page_size_query_param = 'page_size'
+#     max_page_size = 1000
