@@ -1,6 +1,11 @@
 from rest_framework import generics
-from rest_framework.views import APIView
 from rest_framework.response import Response
+# from rest_framework.permissions import (IsAuthenticated,
+#                                         IsAuthenticatedOrReadOnly,
+#                                         IsAdminUser,
+#                                         )
+
+from ctrl.paggination import CustomIndexPagination
 from .serializers import *
 
 
@@ -13,6 +18,31 @@ class FormView(generics.ListAPIView):
 class CardView(generics.ListAPIView):
     queryset = Card.objects.all()
     serializer_class = CardSerializer
+
+
+class MixinsView(generics.ListAPIView):
+
+    pagination_class = CustomIndexPagination
+    # permission_classes = (IsAuthenticated, )
+
+    def get(self, request, *args, **kwargs):
+        card = Card.objects.all()
+        form = Form.objects.all()
+
+        page1 = self.paginate_queryset(card)
+        page2 = self.paginate_queryset(form)
+
+        serializer1 = CardSerializer(page1, many=True)
+        serializer2 = FormSerializer(page2, many=True)
+
+        custom_data = {
+            "contactUs": {
+                "card": serializer1.data,
+                "form": serializer2.data,
+            }
+        }
+
+        return Response(custom_data)
 
 
 class MessageView(generics.ListCreateAPIView):

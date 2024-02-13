@@ -9,9 +9,11 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
+from datetime import timedelta
 from pathlib import Path
 import os
 from .jazzmin import JAZZMIN_SETTINGS, JAZZMIN_UI_TWEAKS
+
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -26,7 +28,12 @@ SECRET_KEY = 'django-insecure-)eiunn&!8ui+gth0zadl9&6!5-osnoy_whp3t#l+wh0%i=&oro
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["127.0.0.1", "192.168.0.107", "192.168.1.10"]
+ALLOWED_HOSTS = ['*']
+# "127.0.0.1",
+# "192.168.0.107",
+# "192.168.1.10",
+# "192.168.0.109"
+
 
 # Application definition
 
@@ -41,7 +48,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'corsheaders',
-    'ckeditor',
+    'rest_framework.authtoken',  # Rest-frameworks default authentication
+    'djoser',                    # For Token-based authentication
 ]
 
 
@@ -211,14 +219,6 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-#
-# REST_FRAMEWORK = {
-#     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.'
-#                                 'LimitOffsetPagination',
-#     'PAGE_SIZE': 2
-# }
-
-
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
@@ -245,3 +245,28 @@ CORS_ALLOW_HEADERS = [
 JAZZMIN_SETTINGS = JAZZMIN_SETTINGS
 
 JAZZMIN_UI_TWEAKS = JAZZMIN_UI_TWEAKS
+
+# Authentication
+# _______________________________________________________________
+
+#
+# REST_FRAMEWORK = {
+#     'DEFAULT_AUTHENTICATION_CLASSES': [
+#         # Based-Token Authentication
+#         # 'rest_framework.authentication.TokenAuthentication',
+#
+#         # Session Authentication
+#         'rest_framework.authentication.SessionAuthentication',
+#         'rest_framework.authentication.BasicAuthentication',
+#
+#         # SimpleJWT Authentication
+#         'rest_framework_simplejwt.authentication.JWTAuthentication',
+#     ]
+# }
+
+MEDIA_URL = 'media/'
+MEDIA_ROOT = BASE_DIR.parent / f"data/{MEDIA_URL}"
+
+
+
+# SIMPLE_JWT = SIMPLE_JWT

@@ -113,6 +113,8 @@ JAZZMIN_SETTINGS = {
         "blog.Categories": "fas fa-list",
         "contact_us.Form": "fas fa-id-card",
         "contact_us.Card": "fas fa-comment-dots",
+        "contact_us.Message": "fas fa-pen",
+        "appointments.Appointments": "fas fa-calendar-check",
 
 },
     # Icons that are used when one is not manually specified
@@ -152,9 +154,9 @@ JAZZMIN_SETTINGS = {
 
 
 JAZZMIN_UI_TWEAKS = {
-    "navbar_small_text": True,
-    "footer_small_text": True,
-    "body_small_text": False,
+    "navbar_small_text": False,
+    "footer_small_text": False,
+    "body_small_text": True,
     "brand_small_text": False,
     "brand_colour": "navbar-warning",
     "accent": "accent-warning",
@@ -163,12 +165,12 @@ JAZZMIN_UI_TWEAKS = {
     "navbar_fixed": False,
     "layout_boxed": False,
     "footer_fixed": True,
-    "sidebar_fixed": True,
+    "sidebar_fixed": False,
     "sidebar": "sidebar-dark-warning",
-    "sidebar_nav_small_text": True,
-    "sidebar_disable_expand": False,
+    "sidebar_nav_small_text": False,
+    "sidebar_disable_expand": True,
     "sidebar_nav_child_indent": False,
-    "sidebar_nav_compact_style": False,
+    "sidebar_nav_compact_style": True,
     "sidebar_nav_legacy_style": False,
     "sidebar_nav_flat_style": False,
     "theme": "cyborg",

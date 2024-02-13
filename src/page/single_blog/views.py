@@ -12,7 +12,7 @@ class SingleView(APIView):
         blog = Blog.objects.all()
 
         return Response({
-            "single_blog": {
+            "singleBlog": {
                 "blog": BlogSerializer(blog, many=True).data
             }
         })

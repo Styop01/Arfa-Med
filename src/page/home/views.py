@@ -1,17 +1,23 @@
 from rest_framework import generics, status
 from rest_framework.response import Response
+# from rest_framework.authentication import TokenAuthentication
+# from rest_framework.permissions import (IsAuthenticated,
+#                                         IsAuthenticatedOrReadOnly,
+#                                         IsAdminUser,
+#                                         )
 from .serializers import *
 from ctrl.paggination import CustomIndexPagination
 
 
 # Create your views here.
-
 # _____________________________________________________________________________
 
 # Example of multiple model handling with generics
 class HomeView(generics.ListAPIView):
 
+    # permission_classes = (IsAuthenticated, )
     pagination_class = CustomIndexPagination
+    # authentication_classes = (TokenAuthentication, ) only TokenAuthentication
 
     def get(self, request, *args, **kwargs):
         # Creating instances for each models
@@ -35,7 +41,11 @@ class HomeView(generics.ListAPIView):
         # instances for each serializer
         serializer1 = ServiceBoxSerializer(page1, many=True)
         serializer2 = ServiceBoxSerializer(page2, many=True)
-        serializer3 = TeamSerializer(page3, many=True)
+
+        serializer3 = TeamSerializer(
+            page3, context={'request': request}, many=True
+        )
+
         serializer4 = TestimonialSerializer(page4, many=True)
         serializer5 = ClientsSerializer(page5, many=True)
         serializer6 = BlogSerializer(page6, many=True)
@@ -98,6 +108,7 @@ class BlogView(generics.ListAPIView):
     queryset = Blog.objects.all()
     serializer_class = BlogSerializer
     pagination_class = CustomIndexPagination
+
 
 # class HomeView(APIView):
 #     pagination_class = PageNumberPagination

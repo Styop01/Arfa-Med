@@ -23,7 +23,8 @@ class DeviceView(generics.ListAPIView):
         page3 = self.paginate_queryset(clients)
         page4 = self.paginate_queryset(blog)
 
-        serializer1 = ProductSerializer(page1, many=True)
+        serializer1 = ProductSerializer(
+            page1, context={'request': request}, many=True)
         serializer2 = TestimonialSerializer(page2, many=True)
         serializer3 = ClientsSerializer(page3, many=True)
         serializer4 = BlogSerializer(page4, many=True)
