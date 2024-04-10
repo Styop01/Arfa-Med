@@ -1,0 +1,1 @@
+web gunicorn Arfa-Med.wsgi:apllication --log-file -
