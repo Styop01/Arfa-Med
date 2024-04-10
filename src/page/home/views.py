@@ -46,9 +46,15 @@ class HomeView(generics.ListAPIView):
             page3, context={'request': request}, many=True
         )
 
-        serializer4 = TestimonialSerializer(page4, many=True)
-        serializer5 = ClientsSerializer(page5, many=True)
-        serializer6 = BlogSerializer(page6, many=True)
+        serializer4 = TestimonialSerializer(
+            page4, context={'request': request}, many=True
+        )
+        serializer5 = ClientsSerializer(
+            page5, context={'request': request}, many=True
+        )
+        serializer6 = BlogSerializer(
+            page6, context={'request': request}, many=True
+                                     )
         serializer7 = HeaderSerializer(page7, many=True)
 
         response_data = {

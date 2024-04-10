@@ -1,7 +1,7 @@
 from rest_framework.pagination import BasePagination, PageNumberPagination
 from rest_framework.response import Response
 
-# endpoint --------->  ?start_index=1&end_index=7
+# endpoint -------------------------------------->  ?start_index=1&end_index=7
 class CustomIndexPagination(BasePagination):
     page_size = 100
 

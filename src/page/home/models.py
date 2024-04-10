@@ -73,12 +73,12 @@ class Testimonial(models.Model):
         primary_key=True
     )
 
-    img_path = models.CharField(
-        max_length=50
-    )
-    # image = models.ImageField(
-    #     upload_to='images/'
+    # img_path = models.CharField(
+    #     max_length=50
     # )
+    img = models.ImageField(
+        upload_to='images/'
+    )
 
     name = models.CharField(
         max_length=30
@@ -96,12 +96,9 @@ class Clients(models.Model):
     id = models.PositiveIntegerField(
         primary_key=True
     )
-    img_path = models.CharField(
-        max_length=50
+    img = models.ImageField(
+        upload_to='images/'
     )
-    # image = models.ImageField(
-    #     upload_to='images/'
-    # )
     hover = models.CharField(
         max_length=20
     )
@@ -115,12 +112,9 @@ class Blog(models.Model):
     id = models.PositiveIntegerField(
         primary_key=True
     )
-    img_path = models.CharField(
-        max_length=20
+    img = models.ImageField(
+        upload_to='images/blog/'
     )
-    # image = models.ImageField(
-    #     upload_to='images/'
-    # )
     dateAttr = models.CharField(
         max_length=30
     )

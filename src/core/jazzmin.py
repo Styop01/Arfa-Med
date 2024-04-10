@@ -115,6 +115,7 @@ JAZZMIN_SETTINGS = {
         "contact_us.Card": "fas fa-comment-dots",
         "contact_us.Message": "fas fa-pen",
         "appointments.Appointments": "fas fa-calendar-check",
+        "services.Navbar": "fas fa-hand-holding"
 
 },
     # Icons that are used when one is not manually specified
