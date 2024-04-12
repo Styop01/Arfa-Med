@@ -20,7 +20,6 @@
 *.dbf
 *.mdb
 *.pdb
-*.sqlite3
 *.db-shm
 *.db-wal
 
