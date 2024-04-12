@@ -17,7 +17,6 @@
 
 ### Database ###
 *.accdb
-*.db
 *.dbf
 *.mdb
 *.pdb

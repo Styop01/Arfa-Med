@@ -11,8 +11,6 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 from datetime import timedelta
 from pathlib import Path
-import django_heroku
-import dj_database_url
 import os
 from .jazzmin import JAZZMIN_SETTINGS, JAZZMIN_UI_TWEAKS
 
@@ -267,7 +265,7 @@ MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR.parent / f"data/{MEDIA_URL}"
 
 
-django_heroku.settings(locals())
+
 
 
 # SIMPLE_JWT = SIMPLE_JWT
