@@ -231,6 +231,8 @@ CORS_ORIGIN_ALLOW_ALL = True
 
 CORS_ALLOW_CREDENTIALS = True
 
+# aaaaaaaaaaa
+
 CORS_ALLOW_METHODS = [
     'DELETE',
     'GET',
