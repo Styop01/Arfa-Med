@@ -144,7 +144,7 @@ WSGI_APPLICATION = 'core.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'data/Arfa-Med.sqlite3',
+        'NAME': BASE_DIR.parent.parent / 'data/Arfa-Med.sqlite3',
     }
 }
 
