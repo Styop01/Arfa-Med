@@ -144,7 +144,7 @@ WSGI_APPLICATION = 'core.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'data/Arfa-Med.sqlite3',
+        'NAME': BASE_DIR.parent.parent / 'data/Arfa-Med.sqlite3',
     }
 }
 
@@ -223,11 +223,11 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-CORS_ALLOWED_ORIGINS = [
-    'http://localhost:3001',
-]
+# CORS_ALLOWED_ORIGINS = [
+#     'http://localhost:3001',
+# ]
 
-# CORS_ORIGIN_ALLOW_ALL = True
+CORS_ORIGIN_ALLOW_ALL = True
 
 CORS_ALLOW_CREDENTIALS = True
 
