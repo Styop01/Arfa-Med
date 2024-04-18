@@ -17,7 +17,7 @@ from .jazzmin import JAZZMIN_SETTINGS, JAZZMIN_UI_TWEAKS
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve()
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
@@ -52,7 +52,7 @@ INSTALLED_APPS = [
 
 
 __app_name__ = "page"
-__apps__ = BASE_DIR / __app_name__
+__apps__ = BASE_DIR.parent.parent / __app_name__
 apps = [
     item
     for item in __import__("os").listdir(
@@ -82,21 +82,26 @@ for item in apps:
     )
 
     url_path = f"src/page/{item}/urls.py"
-    if not os.path.exists(url_path):
-        with open(url_path, "w", encoding="utf-8") as file:
-            file.write(url_content)
+    try:
+        if not os.path.exists(url_path):
+            with open(url_path, "w", encoding="utf-8") as file:
+                file.write(url_content)
+    except Exception as error:
+        print(error)
 # -----------------------------------------------------------------------------
-    # for Serializer file
+    # for Serializer fileex
 
     serializer_content = (
         "from rest_framework import serializers\n"
     )
 
     serializer_path = f"src/page/{item}/serializers.py"
-    if not os.path.exists(serializer_path):
-        with open(serializer_path, "w", encoding="utf-8") as file:
-            file.write(serializer_content)
-
+    try:
+        if not os.path.exists(serializer_path):
+            with open(serializer_path, "w", encoding="utf-8") as file:
+                file.write(serializer_content)
+    except Exception as error:
+        print(error)
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -219,7 +224,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 CORS_ALLOWED_ORIGINS = [
-    'http://localhost:3001',
+    '*',
+    # 'http://localhost:3001',
 ]
 
 CORS_ALLOW_CREDENTIALS = True
