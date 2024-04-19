@@ -72,10 +72,6 @@ class Testimonial(models.Model):
     id = models.IntegerField(
         primary_key=True
     )
-
-    # img_path = models.CharField(
-    #     max_length=50
-    # )
     img = models.ImageField(
         upload_to='images/'
     )
