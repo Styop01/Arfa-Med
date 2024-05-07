@@ -1,5 +1,6 @@
-from django.db import models
 from django.core.exceptions import ValidationError
+from django.db import models
+from ckeditor.fields import RichTextField
 
 # Create your models here.
 
@@ -18,13 +19,20 @@ class Product(models.Model):
         max_length=20,
         blank=True
     )
+    description = RichTextField(
+        verbose_name="Description",
+        null=False,
+    )
 
     def __str__(self):
         return self.title
 
+
 def validate_image_type(value):
     if value.file.content_type not in ['image/jpeg', 'image/png']:
         raise ValidationError("Image type must be jpg or png")
+
+
 def validate_image_size(value):
     height = value.height
     width = value.width
@@ -33,8 +41,8 @@ def validate_image_size(value):
             "The picture must be portrait(height is equal to width)"
         )
 
-class ProductFooterImages(models.Model):
 
+class ProductFooterImages(models.Model):
     product = models.ForeignKey(
         Product,
         verbose_name="Product",
@@ -72,6 +80,3 @@ class ProductFooterImages(models.Model):
 
     # def __str__(self):
     #     return self.id
-
-
-

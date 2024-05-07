@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    "ckeditor",
     'corsheaders',
     'rest_framework.authtoken',  # Rest-frameworks default authentication
     'djoser',                    # For Token-based authentication

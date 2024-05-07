@@ -20,6 +20,7 @@ class admin_Product(ModelAdmin):
                     "title",
                     "price",
                     "discount",
+                    "description",
                 ]
             },
         ),
@@ -27,7 +28,6 @@ class admin_Product(ModelAdmin):
             "General",
             {
                 "fields": [
-                    "img",
                     # "footer_img1",
                     # "footer_img2",
                     # "footer_img3",
