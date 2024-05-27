@@ -2,11 +2,13 @@ from rest_framework import generics
 from rest_framework.response import Response
 from rest_framework import status
 from ctrl.paggination import CustomIndexPagination
-from page.home.models import Blog, Testimonial, Clients
+from page.home.models import Testimonial
 from .serializers import *
-from page.home.serializers import (BlogSerializer,
-                                   TestimonialSerializer,
-                                   ClientsSerializer,)
+from page.home.serializers import (TestimonialSerializer,)
+from ..about_us.models import Brand
+from ..about_us.serializers import BrandSerializer
+from ..blog.models import MainBlog
+from ..blog.serializers import MainBlogSerializer
 
 
 # Create your views here.
@@ -18,8 +20,8 @@ class DeviceView(generics.ListAPIView):
         product = Product.objects.all()
         prod_img = ProductFooterImages.objects.all()
         testimonial = Testimonial.objects.all()
-        clients = Clients.objects.all()
-        blog = Blog.objects.all()
+        clients = Brand.objects.all()
+        blog = MainBlog.objects.all()
 
         product_page = self.paginate_queryset(product)
         prod_img_page = self.paginate_queryset(prod_img)
@@ -40,10 +42,10 @@ class DeviceView(generics.ListAPIView):
         serializer2 = TestimonialSerializer(
             test_page, context={'request': request}, many=True
         )
-        serializer3 = ClientsSerializer(
+        serializer3 = BrandSerializer(
             clients_page, context={"request": request}, many=True
         )
-        serializer4 = BlogSerializer(
+        serializer4 = MainBlogSerializer(
             blog_page, context={'request': request}, many=True
         )
         ls = []

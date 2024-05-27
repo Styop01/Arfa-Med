@@ -1,18 +1,16 @@
 from rest_framework import generics
 from rest_framework.response import Response
 
-from page.blog.models import Categories
-from page.blog.serializers import CategoriesSerializer
-from page.home.models import Blog
-from page.home.serializers import BlogSerializer
+from page.blog.models import Categories, MainBlog
+from page.blog.serializers import CategoriesSerializer, MainBlogSerializer
 from ctrl.paggination import CustomIndexPagination
 
 
 # Create your views here.
 
 class BlogView(generics.ListAPIView):
-    queryset = Blog.objects.all()
-    serializer_class = BlogSerializer
+    queryset = MainBlog.objects.all()
+    serializer_class = MainBlogSerializer
     pagination_class = CustomIndexPagination
 
 

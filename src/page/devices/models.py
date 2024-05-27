@@ -5,29 +5,66 @@ from ckeditor.fields import RichTextField
 # Create your models here.
 
 
-class Product(models.Model):
-    id = models.PositiveIntegerField(
-        primary_key=True
-    )
+class ProductSlider(models.Model):
     title = models.CharField(
-        max_length=50
+        max_length=30
     )
-    price = models.CharField(
-        max_length=20
+    slogan = models.CharField(
+        max_length=40
     )
-
-
-    discount = models.CharField(
-        max_length=20,
-        blank=True
-    )
-    description = RichTextField(
-        verbose_name="Description",
-        null=False,
+    image = models.ImageField(
+        upload_to='images/devices/product/'
     )
 
     def __str__(self):
         return self.title
+
+class ProductCategory(models.Model):
+    name = models.CharField(
+        max_length=30,
+        verbose_name="Product Category"
+    )
+
+    def __str__(self):
+        return self.name
+
+
+class Product(models.Model):
+    name = models.CharField(
+        max_length=30,
+        verbose_name="Product Name"
+    )
+    model = models.CharField(
+        max_length=30,
+        verbose_name="Product Model"
+    )
+    price = models.CharField(
+        max_length=20
+    )
+    short_description = RichTextField(
+        verbose_name="Short Description",
+        null=False,
+    )
+    sku = models.CharField(
+        max_length=50,
+        verbose_name="SKU"
+    )
+    category = models.ForeignKey(
+        ProductCategory,
+        verbose_name="Categories",
+        on_delete=models.CASCADE,
+    )
+    long_description = RichTextField(
+        verbose_name="Long Description",
+        null=False,
+    )
+    additional_information = RichTextField(
+        verbose_name="Additional Information",
+        blank=True
+    )
+
+    def __str__(self):
+        return self.name
 
 
 def validate_image_type(value):

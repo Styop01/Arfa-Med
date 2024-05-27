@@ -16,8 +16,8 @@ class FormView(generics.ListAPIView):
 
 
 class CardView(generics.ListAPIView):
-    queryset = Card.objects.all()
-    serializer_class = CardSerializer
+    queryset = ContactInfo.objects.all()
+    serializer_class = ContactInfoSerializer
 
 
 class MixinsView(generics.ListAPIView):
@@ -26,13 +26,13 @@ class MixinsView(generics.ListAPIView):
     # permission_classes = (IsAuthenticated, )
 
     def get(self, request, *args, **kwargs):
-        card = Card.objects.all()
+        card = ContactInfo.objects.all()
         form = Form.objects.all()
 
         page1 = self.paginate_queryset(card)
         page2 = self.paginate_queryset(form)
 
-        serializer1 = CardSerializer(page1, many=True)
+        serializer1 = ContactInfoSerializer(page1, many=True)
         serializer2 = FormSerializer(page2, many=True)
 
         custom_data = {

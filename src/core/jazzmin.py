@@ -101,21 +101,52 @@ JAZZMIN_SETTINGS = {
         "auth": "fas fa-users-cog",
         "auth.user": "fas fa-user",
         "auth.Group": "fas fa-users",
+
+        "about_us.AboutUsCreator": "fas fa-inbox",
+        "about_us.Brand": "fas fa-mug-hot",
+        "about_us.Certificate": "fas fa-certificate",
+
+        "our_doctors.Doctor": "fas fa-users",
+        "our_doctors.DoctorPage": "fas fa-home",
+
         "home.IconBox": "fas fa-icons",
         "home.ServiceBox": "fas fa-disease",
-        "home.Team": "fas fa-users",
         "home.Testimonial": "fas fa-comments",
-        "home.Clients": "fas fa-mug-hot",
-        "home.Blog": "fas fa-info",
+        "home.SpecialFeature": "fas fa-star",
+        "home.OurMedical": "fas fa-stethoscope",
+        "home.AboutMedical": "fas fa-user-nurse",
+        "home.Info": "fas fa-info",
         "home.Header": "fas fa-heading",
+        "home.Slider": "fas fa-newspaper",
+
+        "blog.MainBlog": "fas fa-info",
+        "blog.Advertisement": "fas fa-pager",
+
         "devices.Product": "fas fa-syringe",
+        "devices.ProductFooterImages": "fas fa-images",
+        "devices.ProductSlider": "fas fa-newspaper",
+        "devices.ProductCategory": "fas fa-layer-group",
+
+        "devices.Accessories": "fas fa-mobile",
+        "devices.AccessoriesFooterImages": "fas fa-images",
+
         "faq.Questions": "fas fa-question",
+        "faq.FaqHead": "fas fa-object-group",
+
         "blog.Categories": "fas fa-list",
+
         "contact_us.Form": "fas fa-id-card",
-        "contact_us.Card": "fas fa-comment-dots",
+        "contact_us.ContactInfo": "fas fa-comment-dots",
+        "contact_us.SocialInfo": "fas fa-heart",
         "contact_us.Message": "fas fa-pen",
+        "contact_us.ContactPage": "fas fa-home",
+
         "appointments.Appointments": "fas fa-calendar-check",
-        "services.Navbar": "fas fa-hand-holding"
+
+        "services.Navbar": "fas fa-hand-holding",
+        "services.NavbarInfo": "fas fa-info",
+        "services.Category": "fas fa-layer-group",
+        "services.Advertisement": "fas fa-pager"
 
 },
     # Icons that are used when one is not manually specified

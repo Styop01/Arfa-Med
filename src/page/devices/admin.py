@@ -5,22 +5,15 @@ from django.contrib.admin import ModelAdmin
 
 # Register your models here.
 
-
-@admin.register(model.Product)
-class admin_Product(ModelAdmin):
-    # list_display = ("id", "img", "title", "price", "discount")
-    # list_display_links = list_display
-
+@admin.register(model.ProductSlider)
+class admin_ProductSlider(ModelAdmin):
     fieldsets = [
         (
             "English",
             {
                 "fields": [
-                    "id",
                     "title",
-                    "price",
-                    "discount",
-                    "description",
+                    "slogan",
                 ]
             },
         ),
@@ -28,9 +21,56 @@ class admin_Product(ModelAdmin):
             "General",
             {
                 "fields": [
-                    # "footer_img1",
-                    # "footer_img2",
-                    # "footer_img3",
+                    "image"
+                ]
+            },
+        ),
+    ]
+
+
+@admin.register(model.ProductCategory)
+class admin_ProductCategory(ModelAdmin):
+    fieldsets = [
+        (
+            "English",
+            {
+                "fields": [
+                    "name",
+                ]
+            },
+        ),
+        (
+            "General",
+            {
+                "fields": [
+                ]
+            },
+        ),
+    ]
+
+
+@admin.register(model.Product)
+class admin_Product(ModelAdmin):
+    fieldsets = [
+        (
+            "English",
+            {
+                "fields": [
+                    "name",
+                    "model",
+                    "price",
+                    "short_description",
+                    "sku",
+                    "category",
+                    "long_description",
+                    "additional_information"
+                ]
+            },
+        ),
+        (
+            "General",
+            {
+                "fields": [
                 ]
             },
         ),

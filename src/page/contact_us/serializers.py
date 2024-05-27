@@ -8,9 +8,9 @@ class FormSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
-class CardSerializer(serializers.ModelSerializer):
+class ContactInfoSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Card
+        model = ContactInfo
         fields = "__all__"
 
 

@@ -10,7 +10,7 @@ packages = [
 ]
 
 [tool.poetry.dependencies]
-python = "^3.11"
+python = "^3.10"
 Django = "^5.0"
 
 django-jazzmin = "^2.6.0"

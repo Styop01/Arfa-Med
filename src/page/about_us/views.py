@@ -1,16 +1,13 @@
 from rest_framework import generics
-from page.home.models import Team, Testimonial, Clients
-from page.home.serializers import TeamSerializer, TestimonialSerializer, \
-    ClientsSerializer
+
+from page.about_us.models import Brand
+from page.about_us.serializers import BrandSerializer
+from page.home.models import Testimonial
+from page.home.serializers import TestimonialSerializer
 from ctrl.paggination import CustomIndexPagination
 
 
 # Create your views here.
-class TeamView(generics.ListAPIView):
-    queryset = Team.objects.all()
-    serializer_class = TeamSerializer
-    pagination_class = CustomIndexPagination
-
 
 class TestimonialView(generics.ListAPIView):
     queryset = Testimonial.objects.all()
@@ -19,8 +16,8 @@ class TestimonialView(generics.ListAPIView):
 
 
 class ClientsView(generics.ListAPIView):
-    queryset = Clients.objects.all()
-    serializer_class = ClientsSerializer
+    queryset = Brand.objects.all()
+    serializer_class = BrandSerializer
     pagination_class = CustomIndexPagination
 
 # class AboutUsView(APIView):

@@ -3,8 +3,8 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from ctrl.paggination import CustomIndexPagination
-from page.home.models import Team
-from page.home.serializers import TeamSerializer
+from page.our_doctors.models import Doctor
+from page.our_doctors.serializers import DoctorSerializer
 from page.services.models import Navbar
 from page.services.serializers import NavbarSerializer
 
@@ -14,10 +14,10 @@ class ServiceView(generics.ListAPIView):
     pagination_class = CustomIndexPagination
 
     def get(self, request, *args, **kwargs):
-        team = Team.objects.all()
+        team = Doctor.objects.all()
         navbar = Navbar.objects.all()
 
-        serializer1 = TeamSerializer(
+        serializer1 = DoctorSerializer(
             team, context={"request": request}, many=True)
         serializer2 = NavbarSerializer(navbar, many=True)
 

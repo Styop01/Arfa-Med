@@ -29,11 +29,11 @@ class FaqView(generics.ListAPIView):
         questions = Questions.objects.all()
         page = self.paginate_queryset(questions)
         serializer = QuestionsSerializerAll(page, many=True)
-        for dicts in serializer.data:
-            appended_title = f'<p><strong>{dicts['title']}</strong></p>'
-            appended_body = f'<p>{dicts['body']}&nbsp;</p>'
-            dicts['title'] = appended_title
-            dicts['body'] = appended_body
+        # for dicts in serializer.data:
+        #     appended_title = f'<p><strong>{dicts['title']}</strong></p>'
+        #     appended_body = f'<p>{dicts[body]}&nbsp;</p>'
+        #     dicts['title'] = appended_title
+        #     dicts['body'] = appended_body
 
         custom_data = {
             'faq': {

@@ -1,9 +1,52 @@
+from ckeditor.fields import RichTextField
 from django.db import models
-# from ckeditor.fields import RichTextField
+
 from django.utils.translation import gettext_lazy as _
 
 
 # Create your models here.
+
+class Slider(models.Model):
+    image = models.ImageField(
+        upload_to='images/home/',
+        verbose_name='Background Image'
+    )
+    title = models.CharField(
+        max_length=45,
+        verbose_name='Title'
+    )
+    slogan = models.CharField(
+        max_length=70,
+        verbose_name='Slogan'
+    )
+
+    def __str__(self):
+        return self.title
+
+
+class OurMedical(models.Model):
+    image = models.ImageField(
+        upload_to='images/home/',
+        verbose_name='Image'
+    )
+    title = models.CharField(
+        max_length=60,
+        verbose_name='Title'
+    )
+    slogan = models.CharField(
+        max_length=30,
+        verbose_name='Slogan'
+    )
+    description = RichTextField(
+        verbose_name='Description',
+
+    )
+
+    def __str__(self):
+        return self.title
+
+
+# About Medical ????_________________________________________________________
 
 class IconBox(models.Model):
 
@@ -48,25 +91,6 @@ class ServiceBox(models.Model):
         return self.title
 
 
-class Team(models.Model):
-
-    id = models.PositiveIntegerField(
-        primary_key=True
-    )
-    img = models.ImageField(
-        upload_to='images/'
-    )
-    content = models.CharField(
-        max_length=50
-    )
-    title = models.CharField(
-        max_length=50
-    )
-
-    def __str__(self):
-        return self.content
-
-
 class Testimonial(models.Model):
 
     id = models.IntegerField(
@@ -86,54 +110,6 @@ class Testimonial(models.Model):
 
     def __str__(self):
         return self.name
-
-
-class Clients(models.Model):
-    id = models.PositiveIntegerField(
-        primary_key=True
-    )
-    img = models.ImageField(
-        upload_to='images/'
-    )
-    hover = models.CharField(
-        max_length=20
-    )
-
-    def __str__(self):
-        return self.hover
-
-
-class Blog(models.Model):
-
-    id = models.PositiveIntegerField(
-        primary_key=True
-    )
-    img = models.ImageField(
-        upload_to='images/blog/'
-    )
-    dateAttr = models.CharField(
-        max_length=30
-    )
-    day = models.PositiveIntegerField()
-    month = models.CharField(
-        max_length=10
-    )
-    year = models.PositiveIntegerField()
-    commCount = models.IntegerField()
-    publisher = models.CharField(
-        max_length=20
-    )
-    title = models.CharField(
-        max_length=50
-    )
-    to = models.CharField(
-        max_length=10
-    )
-    subtitle = models.TextField()
-    single = models.TextField()
-
-    def __str__(self):
-        return self.title
 
 
 class Header(models.Model):

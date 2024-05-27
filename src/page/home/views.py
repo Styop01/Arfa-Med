@@ -7,6 +7,12 @@ from rest_framework.response import Response
 #                                         )
 from .serializers import *
 from ctrl.paggination import CustomIndexPagination
+from ..about_us.models import Brand
+from ..about_us.serializers import BrandSerializer
+from ..blog.models import MainBlog
+from ..blog.serializers import MainBlogSerializer
+from ..our_doctors.models import Doctor
+from ..our_doctors.serializers import DoctorSerializer
 
 
 # Create your views here.
@@ -23,9 +29,9 @@ class HomeView(generics.ListAPIView):
         # Creating instances for each models
         icon_box = IconBox.objects.all()
         service_box = ServiceBox.objects.all()
-        team = Team.objects.all()
+        team = Doctor.objects.all()
         testimonial = Testimonial.objects.all()
-        clients = Clients.objects.all()
+        clients = Brand.objects.all()
         blog = Blog.objects.all()
         header = Header.objects.all()
 
@@ -42,14 +48,14 @@ class HomeView(generics.ListAPIView):
         serializer1 = ServiceBoxSerializer(page1, many=True)
         serializer2 = ServiceBoxSerializer(page2, many=True)
 
-        serializer3 = TeamSerializer(
+        serializer3 = DoctorSerializer(
             page3, context={'request': request}, many=True
         )
 
         serializer4 = TestimonialSerializer(
             page4, context={'request': request}, many=True
         )
-        serializer5 = ClientsSerializer(
+        serializer5 = BrandSerializer(
             page5, context={'request': request}, many=True
         )
         serializer6 = BlogSerializer(
@@ -93,11 +99,6 @@ class ServiceBoxView(generics.ListAPIView):
     pagination_class = CustomIndexPagination
 
 
-class TeamView(generics.ListAPIView):
-    queryset = Team.objects.all()
-    serializer_class = TeamSerializer
-    pagination_class = CustomIndexPagination
-
 class TestimonialView(generics.ListAPIView):
     queryset = Testimonial.objects.all()
     serializer_class = TestimonialSerializer
@@ -105,14 +106,14 @@ class TestimonialView(generics.ListAPIView):
 
 
 class ClientsView(generics.ListAPIView):
-    queryset = Clients.objects.all()
-    serializer_class = ClientsSerializer
+    queryset = Brand.objects.all()
+    serializer_class = BrandSerializer
     pagination_class = CustomIndexPagination
 
 
 class BlogView(generics.ListAPIView):
-    queryset = Blog.objects.all()
-    serializer_class = BlogSerializer
+    queryset = MainBlog.objects.all()
+    serializer_class = MainBlogSerializer
     pagination_class = CustomIndexPagination
 
 
