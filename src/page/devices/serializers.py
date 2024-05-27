@@ -9,12 +9,8 @@ class ProductSerializer(serializers.ModelSerializer):
 
 class ProductImageSerializer(serializers.ModelSerializer):
     class Meta:
-        model = ProductFooterImages
-        fields = ("id", "img", "footer1", "footer2", "footer3", "footer4",)
+        model = ProductImages
+        fields = "all"
 
 
-class PaSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = ProductFooterImages
-        fields = ("img",)
 

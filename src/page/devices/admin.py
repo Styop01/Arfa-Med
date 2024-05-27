@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Product, ProductFooterImages
+from .models import *
 from . import models as model
 from django.contrib.admin import ModelAdmin
 
@@ -49,8 +49,15 @@ class admin_ProductCategory(ModelAdmin):
     ]
 
 
+class ProductImages(admin.TabularInline):
+    model = model.ProductImages
+
+
 @admin.register(model.Product)
 class admin_Product(ModelAdmin):
+    # list_display = ("product", "image")
+    inlines = [ProductImages]
+    # list_display_links = list_display
     fieldsets = [
         (
             "English",
@@ -60,8 +67,7 @@ class admin_Product(ModelAdmin):
                     "model",
                     "price",
                     "short_description",
-                    "sku",
-                    "category",
+
                     "long_description",
                     "additional_information"
                 ]
@@ -71,36 +77,40 @@ class admin_Product(ModelAdmin):
             "General",
             {
                 "fields": [
+                    "sku",
+                    "category",
                 ]
             },
         ),
+
+
     ]
 
 
-@admin.register(model.ProductFooterImages)
-class admin_Product_Images(ModelAdmin):
-    # list_display = ("id", "img", "title", "price", "discount")
-    # list_display_links = list_display
-
-    fieldsets = [
-        (
-            "Main Image",
-            {
-                "fields": [
-                    "product",
-                    "img",
-                ]
-            },
-        ),
-        (
-            "Other Examples",
-            {
-                "fields": [
-                    "footer1",
-                    "footer2",
-                    "footer3",
-                    "footer4",
-                ]
-            },
-        ),
-    ]
+# @admin.register(model.ProductFooterImages)
+# class admin_Product_Images(ModelAdmin):
+#     # list_display = ("id", "img", "title", "price", "discount")
+#     # list_display_links = list_display
+#
+#     fieldsets = [
+#         (
+#             "Main Image",
+#             {
+#                 "fields": [
+#                     "product",
+#                     "img",
+#                 ]
+#             },
+#         ),
+#         (
+#             "Other Examples",
+#             {
+#                 "fields": [
+#                     "footer1",
+#                     "footer2",
+#                     "footer3",
+#                     "footer4",
+#                 ]
+#             },
+#         ),
+#     ]
