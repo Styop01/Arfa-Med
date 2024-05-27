@@ -15,6 +15,8 @@ class Product(models.Model):
     price = models.CharField(
         max_length=20
     )
+
+
     discount = models.CharField(
         max_length=20,
         blank=True
